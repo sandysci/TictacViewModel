@@ -11,7 +11,9 @@ import android.view.View;
 
 import com.example.sandy.viewmodelsandy.R;
 import com.example.sandy.viewmodelsandy.databinding.ActivityGameBinding;
+import com.example.sandy.viewmodelsandy.models.Player;
 import com.example.sandy.viewmodelsandy.viewmodels.GameViewModel;
+import com.example.sandy.viewmodelsandy.viewmodels.PlayerEndGameFragment;
 import com.example.sandy.viewmodelsandy.viewmodels.PlayerNameFragment;
 
 import android.arch.lifecycle.ViewModelProviders;
@@ -38,15 +40,19 @@ public class GameActivity extends AppCompatActivity {
     public void  setPlayerName(String play1, String play2){
         player1 = play1;
         player2 = play2;
+        Log.i("REQUEST_TAG","player1");
+        Log.i("REQUEST_TAG",player1);
+        Log.i("REQUEST_TAG",player2);
+
         if(player1.equals("") && player2.equals("")){
             Toast.makeText(this,"Using System configuration name",Toast.LENGTH_SHORT).show();
-            initDataBinding("Player1","Player1");
+            initDataBinding("Player1","Player2");
         }
-        if(player1.equals("")){
+        else if(player1.equals("")){
             Toast.makeText(this,"Using System configuration name for player1",Toast.LENGTH_SHORT).show();
             initDataBinding("Player1",player2);
         }
-        if(player2.equals("")){
+        else if(player2.equals("")){
             Toast.makeText(this,"Using System configuration name for Player2",Toast.LENGTH_SHORT).show();
             initDataBinding(player1,"Player2");
         }
@@ -68,6 +74,22 @@ public class GameActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        onwinnerSet();
+    }
+
+    public void onwinnerSet(){
+        gameViewModel.getWinner().observe(this,this::showWinnerdialog);
+    }
+    public void showWinnerdialog(Player player){
+        String winner = (player.equals(null)? "No one won , try again , but you are good mehn":player.name);
+        PlayerEndGameFragment playerEndGameFragment = PlayerEndGameFragment.newinstance(this,winner);
+        playerEndGameFragment.setCancelable(false);
+        playerEndGameFragment.show(getSupportFragmentManager(),"end game");
+
+    }
+    public void closeGame(){
+        this.finish();
     }
 
 

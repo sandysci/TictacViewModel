@@ -37,9 +37,11 @@ public class Game {
         currentPlayer = (currentPlayer == player1)?player2:player1;
     }
     public void gameReset(){
+        Log.i("REQUEST_TAG","winner" +currentPlayer.name);
         player1=null;
         player2=null;
         currentPlayer = null;
+        cells = null;
     }
     public boolean isHorinzonatlCell(){
         try{

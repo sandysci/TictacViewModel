@@ -11,23 +11,24 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sandy.viewmodelsandy.R;
 import com.example.sandy.viewmodelsandy.views.GameActivity;
 
-public class PlayerNameFragment extends DialogFragment {
+public class PlayerEndGameFragment extends DialogFragment {
    private View rootView;
    private GameActivity gameActivity;
-   private TextInputLayout player1Layout,player2Layout;
-   private TextInputEditText player1EditText,player2EditText;
+   private TextView playerTextView;
+   private static String winner;
 
 
 
-   public static PlayerNameFragment newinstance(GameActivity activity){
-       PlayerNameFragment playerNameFragment = new PlayerNameFragment();
+   public static PlayerEndGameFragment newinstance(GameActivity activity, String win){
+       PlayerEndGameFragment playerNameFragment = new PlayerEndGameFragment();
        playerNameFragment.gameActivity =activity;
+       winner = win;
        return playerNameFragment;
    }
 
@@ -38,15 +39,20 @@ public class PlayerNameFragment extends DialogFragment {
        initViews();
         AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setView(rootView)
-                .setTitle("Enter name")
-                .setCancelable(true)
-                .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                .setTitle("Game End")
+                .setPositiveButton("New Game", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        gameActivity.setPlayerName(player1EditText.getText().toString(),player2EditText.getText().toString());
-                        dismiss();
+                        newGame();
                     }
                 })
+                .setNegativeButton("ExitGame", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                     exitGame();
+                    }
+                })
+                .setCancelable(true)
                 .create();
         alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.setCancelable(false);
@@ -58,15 +64,17 @@ public class PlayerNameFragment extends DialogFragment {
 
     private void initViews() {
         rootView = LayoutInflater.from(getContext())
-                .inflate(R.layout.dialog_players_name, null, false);
-        player1Layout = rootView.findViewById(R.id.layout_player1);
-        player2Layout = rootView.findViewById(R.id.layout_player2);
-
-        player1EditText = rootView.findViewById(R.id.et_player1);
-        player2EditText = rootView.findViewById(R.id.et_player2);
-//        addTextWatchers();
+                .inflate(R.layout.dialog_player_endgame, null, false);
+        playerTextView = rootView.findViewById(R.id.winner_name);
+        playerTextView.setText(winner);
     }
-    public void onButtonClicked(AlertDialog dialog){
 
+    private void newGame(){
+       dismiss();
+       gameActivity.openPlayerDialog();
+    }
+    private void exitGame(){
+        dismiss();
+        gameActivity.closeGame();
     }
 }

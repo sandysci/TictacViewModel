@@ -23,19 +23,24 @@ public class GameViewModel extends ViewModel {
     }
 
     public void onClickedCellAt(int row, int column) {
-        Log.i("REQUEST_TAG",String.valueOf(row+ "==="+ column));
-        Log.i("REQUEST_TAG",game.currentPlayer.value);
-        if (game.cells[row][column] == null) {
-            game.cells[row][column] = new Cell(game.currentPlayer);
-            cells.put(stringFromNumbers(row, column), game.currentPlayer.value);
-            if (game.gamehasEnded())
-                game.gameReset();
-            else
-                game.switchPlayer();
+        try {
+
+            if (game.cells[row][column] == null) {
+                game.cells[row][column] = new Cell(game.currentPlayer);
+                cells.put(stringFromNumbers(row, column), game.currentPlayer.value);
+                if (game.gamehasEnded()) {
+                    game.gameReset();
+                }
+                else
+                    game.switchPlayer();
+            }
+        }catch (Exception e){
+            Log.i("REQUEST_TAG",e.getMessage());
         }
     }
 
     public LiveData<Player> getWinner() {
+        Log.i("REQUEST_TAG","gameviewmodel-"+game.winner);
         return game.winner;
     }
 

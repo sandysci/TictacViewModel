@@ -7,9 +7,7 @@ public class StringUtilities {
     public static String stringFromNumbers(int... numbers) {
         StringBuilder sNumbers = new StringBuilder();
         for (int number : numbers)
-            sNumbers.append(number);
-        Log.i("REQUEST_TAG1","string");
-        Log.i("REQUEST_TAG",sNumbers.toString());
+            sNumbers.append(number);;
         return sNumbers.toString();
     }
 
