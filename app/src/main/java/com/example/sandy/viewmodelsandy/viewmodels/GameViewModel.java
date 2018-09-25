@@ -28,10 +28,11 @@ public class GameViewModel extends ViewModel {
         if (game.cells[row][column] == null) {
             game.cells[row][column] = new Cell(game.currentPlayer);
             cells.put(stringFromNumbers(row, column), game.currentPlayer.value);
-//            if (game.hasGameEnded())
-//                game.reset();
-//            else
-//                game.switchPlayer();
+            Log.e("REQUEST_TAG",String.valueOf("Viewmodellength--"+cells.size()));
+            if (game.gamehasEnded())
+                game.gameReset();
+            else
+                game.switchPlayer();
         }
     }
 

@@ -32,6 +32,9 @@ public class GameActivity extends AppCompatActivity {
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
         gameViewModel.init(player1, player2);
         activityGameBinding.setGameViewModel(gameViewModel);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
 
