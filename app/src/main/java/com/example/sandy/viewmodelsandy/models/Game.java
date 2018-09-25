@@ -23,7 +23,14 @@ public class Game {
     }
 
     public boolean gamehasEnded(){
-        areEqual();
+        if(isHorinzonatlCell() || isVerticalCell() || isDiagonalCells() ){
+            winner.setValue(currentPlayer);
+            return true;
+        }
+        if(checkIfBoardisFull()){
+            winner.setValue(null);
+            return true;
+        }
         return  false;
     }
     public void switchPlayer(){
@@ -63,7 +70,7 @@ public class Game {
 
 
     }
-    public boolean hasThreeSameDiagonalCells() {
+    public boolean isDiagonalCells() {
         try {
             return areEqual(cells[0][0], cells[1][1], cells[2][2]) ||
                     areEqual(cells[0][2], cells[1][1], cells[2][0]);
@@ -73,10 +80,29 @@ public class Game {
         }
     }
     public boolean areEqual(Cell... cells){
-      for(Cell cell: cells){
-          Log.e(TAG,String.valueOf(cell));
-          Log.e(TAG,String.valueOf("length--"+cells.length));
-      }
-        return  true;
+        if(cells == null|| cells.length == 0)
+            return false;
+        for (Cell cell: cells)
+            if(cell == null)
+                return false;
+        for(Cell cell: cells){
+          Cell compareeachcell = cells[0];
+          if(!compareeachcell.player.value.equals(cell.player.value))
+              return false;
+         }
+      return  true;
+    }
+
+    public boolean checkIfBoardisFull(){
+        for (Cell[] row : cells) {
+            for (Cell cell : row) {
+                if (cell == null || cell.isEmpty()) {
+                    return false;
+                }
+            }
+
+        }
+        return true;
+
     }
 }
