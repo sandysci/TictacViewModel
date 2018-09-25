@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical"-->
+    <!--tools:context=".views.GameActivity">-->
+
+    <!--<android.support.design.widget.AppBarLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:theme="@style/AppTheme.AppBarOverlay">-->
+
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:background="?attr/colorPrimary"-->
+            <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+
+    <!--</android.support.design.widget.AppBarLayout>-->
+
+    <layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <data>
+            <variable
+                name="gameViewModel"
+                type="com.example.sandy.viewmodelsandy.viewmodels.GameViewModel" />
+        </data>
+
+        <android.support.v7.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:padding="32dp"
+           >
+
+            <TextView
+                android:id="@+id/cell_00"
+                style="@style/CellTextView"
+                android:background="@drawable/cell_00"
+                app:layout_column="1"
+                android:onClick="@{() -> gameViewModel.onClickedCellAt(0, 0)}"
+                android:text='@{gameViewModel.cells["00"]}'
+                app:layout_columnWeight="1"
+                app:layout_row="1"
+                app:layout_rowWeight="1" />
+
+            <TextView
+                android:id="@+id/cell_01"
+                style="@style/CellTextView"
+                android:background="@drawable/cell_01"
+                app:layout_column="2"
+                android:onClick="@{() -> gameViewModel.onClickedCellAt(0, 1)}"
+                android:text='@{gameViewModel.cells["01"]}'
+                app:layout_columnWeight="1"
+                app:layout_row="1"
+                app:layout_rowWeight="1" />
+
+            <TextView
+                android:id="@+id/cell_02"
+                style="@style/CellTextView"
+                android:background="@drawable/cell_02"
+                app:layout_column="3"
+                android:onClick="@{() -> gameViewModel.onClickedCellAt(0, 2)}"
+                android:text='@{gameViewModel.cells["02"]}'
+                app:layout_columnWeight="1"
+                app:layout_row="1"
+                app:layout_rowWeight="1" />
+
+            <TextView
+                android:id="@+id/cell_10"
+                style="@style/CellTextView"
+                android:background="@drawable/cell_10"
+                app:layout_column="1"
+                android:onClick="@{() -> gameViewModel.onClickedCellAt(1, 0)}"
+                android:text='@{gameViewModel.cells["10"]}'
+                app:layout_columnWeight="1"
+                app:layout_row="2"
+                app:layout_rowWeight="1" />
+
+            <TextView
+                android:id="@+id/cell_11"
+                style="@style/CellTextView"
+                android:background="@drawable/cell_11"
+                app:layout_column="2"
+                android:onClick="@{() -> gameViewModel.onClickedCellAt(1, 1)}"
+                android:text='@{gameViewModel.cells["11"]}'
+                app:layout_columnWeight="1"
+                app:layout_row="2"
+                app:layout_rowWeight="1" />
+
+            <TextView
+                android:id="@+id/cell_12"
+                style="@style/CellTextView"
+                android:background="@drawable/cell_12"
+                app:layout_column="3"
+                android:onClick="@{() -> gameViewModel.onClickedCellAt(1, 2)}"
+                android:text='@{gameViewModel.cells["12"]}'
+                app:layout_columnWeight="1"
+                app:layout_row="2"
+                app:layout_rowWeight="1" />
+
+            <TextView
+                android:id="@+id/cell_20"
+                style="@style/CellTextView"
+                android:background="@drawable/cell_20"
+                app:layout_column="1"
+                android:onClick="@{() -> gameViewModel.onClickedCellAt(2, 0)}"
+                android:text='@{gameViewModel.cells["20"]}'
+                app:layout_columnWeight="1"
+                app:layout_row="3"
+                app:layout_rowWeight="1" />
+
+            <TextView
+                android:id="@+id/cell_21"
+                style="@style/CellTextView"
+                android:background="@drawable/cell_21"
+                app:layout_column="2"
+                android:onClick="@{() -> gameViewModel.onClickedCellAt(2, 1)}"
+                android:text='@{gameViewModel.cells["21"]}'
+                app:layout_columnWeight="1"
+                app:layout_row="3"
+                app:layout_rowWeight="1" />
+
+            <TextView
+                android:id="@+id/cell_22"
+                style="@style/CellTextView"
+                android:background="@drawable/cell_22"
+                app:layout_column="3"
+                android:onClick="@{() -> gameViewModel.onClickedCellAt(2, 2)}"
+                android:text='@{gameViewModel.cells["22"]}'
+                app:layout_columnWeight="1"
+                app:layout_row="3"
+                app:layout_rowWeight="1" />
+
+        </android.support.v7.widget.GridLayout>
+
+    </layout>
+
+
+
+<!--</LinearLayout>-->
