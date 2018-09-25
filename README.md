@@ -1,2 +1,2 @@
 # TictacViewModel
-A tictac game , using the VMMV architecture  in android Studio
+A tictac game , using the MVVM architecture  in android Studio
