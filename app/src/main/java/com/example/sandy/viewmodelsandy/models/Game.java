@@ -28,6 +28,7 @@ public class Game {
             return true;
         }
         if(checkIfBoardisFull()){
+            Log.i("REQUEST_LOG","board is full");
             winner.setValue(null);
             return true;
         }

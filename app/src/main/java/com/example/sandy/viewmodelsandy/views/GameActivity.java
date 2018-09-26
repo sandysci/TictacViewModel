@@ -82,10 +82,19 @@ public class GameActivity extends AppCompatActivity {
         gameViewModel.getWinner().observe(this,this::showWinnerdialog);
     }
     public void showWinnerdialog(Player player){
-        String winner = (player.equals(null)? "No one won , try again , but you are good mehn":player.name);
+        String winner = null;
+        try {
+            Log.i("REQUEST_TAG","winner game activity");
+            Log.i("REQUEST_TAG",player.toString());
+             winner = (player == null ? "No one won , try again , but you are good mehn":player.name);
+
+        }catch (NullPointerException e){
+            winner = "No one won , try again , but you are good mehn";
+        }
         PlayerEndGameFragment playerEndGameFragment = PlayerEndGameFragment.newinstance(this,winner);
         playerEndGameFragment.setCancelable(false);
         playerEndGameFragment.show(getSupportFragmentManager(),"end game");
+
 
     }
     public void closeGame(){
